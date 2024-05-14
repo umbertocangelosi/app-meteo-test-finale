@@ -1,0 +1,5 @@
+package it.test.model;
+
+public class Utente {
+
+}

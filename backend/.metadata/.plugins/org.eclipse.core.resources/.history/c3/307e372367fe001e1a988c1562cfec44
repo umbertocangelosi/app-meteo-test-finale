@@ -1,0 +1,56 @@
+package it.corso.controller;
+
+import java.util.regex.Pattern;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import it.corso.model.User;
+import it.corso.service.UserService;
+import jakarta.validation.Valid;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+
+// gestira'tutte le richieste che arrivano all'URL HTTP.../user
+@Path("/user")
+public class UserController {
+
+	// dependency injection che implementa IoC. Iniezione del servizio per essre chiamato all'interno del controller
+	@Autowired
+	private UserService userService;
+	
+	//endpoint per la registrazione dell'utente
+	
+	@POST
+	@Path("/reg")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response userRegistration(@Valid @RequestBody User user) {
+		
+		try {
+			System.out.println("ciao");
+			//la validazione non rimane attiva 
+			if(!Pattern.matches("[a-zA-Z\\s']{5,50}", user.getPassword())) {
+				
+				return Response.status(Response.Status.BAD_REQUEST).build();
+			}
+			if(userService.existsUserByEmail(user.getMail())) {
+				
+				return Response.status(Response.Status.BAD_REQUEST).build();
+			}
+			
+			//chiamata al service utilizazndo il metodo user registration che a sua volta chiamera il dao e chiamera il metodo save() che salva l ogetto sul db
+			userService.userRegistration(user);
+			
+			// se va tutto a buon fine ritornera 200
+			return Response.status(Response.Status.OK).build();
+			
+			//userService.userRegistration(user); non possiamo fare questo 
+		} catch (Exception e) {
+			
+			return Response.status(Response.Status.BAD_REQUEST).build();
+		}
+	}
+}

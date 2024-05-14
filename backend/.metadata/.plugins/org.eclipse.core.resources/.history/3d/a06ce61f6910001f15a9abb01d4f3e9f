@@ -1,0 +1,5 @@
+package it.test.jswt;
+
+public @interface Secured {
+
+}

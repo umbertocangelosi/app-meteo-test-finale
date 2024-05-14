@@ -1,0 +1,5 @@
+package it.test.jswt;
+
+public class JWTTokenNeededFilter {
+
+}

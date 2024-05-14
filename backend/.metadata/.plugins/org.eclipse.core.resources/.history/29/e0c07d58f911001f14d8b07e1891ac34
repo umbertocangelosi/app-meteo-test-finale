@@ -1,0 +1,5 @@
+package it.test.service;
+
+public interface Weather_Forecast {
+
+}

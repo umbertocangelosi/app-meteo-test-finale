@@ -1,0 +1,13 @@
+package it.test.controller;
+
+import org.springframework.data.repository.CrudRepository;
+
+import it.test.model.Utente;
+import jakarta.ws.rs.Path;
+
+@Path("meteo")
+public class Weather_ForecastController extends CrudRepository<Weather_Forecast,Integer> {
+
+	
+	
+}

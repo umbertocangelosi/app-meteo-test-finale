@@ -1,0 +1,59 @@
+package it.test.dto;
+
+import java.util.Date;
+
+import it.test.model.Utente;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+public class Weather_ForecastDTO {
+
+
+    private Long id;
+
+
+    private String userID;
+
+
+    private String city;
+
+    private Double temperature;
+
+
+    private Double feelsLike;
+
+
+    private String description;
+
+
+    private Double cloudiness;
+
+
+    private Double humidity;
+
+
+    private Double pressure;
+
+
+    private Double windSpeed;
+
+
+    private Double windDirection;
+
+
+    private Date sunrise;
+
+
+    private Date sunset;
+
+
+    private Date forecastDate;
+
+
+    private Date createdAt;
+}

@@ -1,0 +1,38 @@
+package it.test.service;
+
+import org.apache.commons.codec.digest.DigestUtils;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import it.test.dao.UtenteDAO;
+import it.test.dao.Weather_ForecastDAO;
+import it.test.dto.UtenteRegistrazioneDTO;
+import it.test.dto.Weather_ForecastDTO;
+import it.test.model.Utente;
+
+public class Weather_ForecastImp {
+	@Autowired
+	private Weather_ForecastDAO meteoDao;
+	
+	@Autowired
+	private UtenteDAO utenteDao;
+	
+
+	private ModelMapper mapper = new ModelMapper();
+	
+	@Override
+	public void insert(Weather_ForecastDTO meteoDTO) {
+		
+		Utente utente = new Utente();
+		
+		utente.setNome(utenteDTO.getNome());
+		utente.setCognome(utenteDTO.getCognome());
+		utente.setEmail(utenteDTO.getEmail());
+		utente.setCitta(utenteDTO.getCitta());
+		
+		String sha256hex=DigestUtils.sha256Hex(utenteDTO.getPassword());
+		utente.setPassword(sha256hex);
+		
+		utenteDao.save(utente);
+	}
+}

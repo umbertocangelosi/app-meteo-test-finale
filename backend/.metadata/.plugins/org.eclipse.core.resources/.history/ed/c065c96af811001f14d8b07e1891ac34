@@ -1,0 +1,5 @@
+package it.test.controller;
+
+public class Weather_ForecastController {
+
+}
